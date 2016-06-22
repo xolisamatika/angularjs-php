@@ -6,6 +6,8 @@ require 'User.php';
 class TeamRepository {
 	private static $teams = array ();
 	private static $users = array ();
+	private static $user = null;
+
 	protected static function init() {
 		$teams = Team::getAllTeams ();
 		$users = User::getAllUsers ();
@@ -24,6 +26,11 @@ class TeamRepository {
 			self::init ();
 		}
 		return self::$users;
+	}
+
+	public static function getUser($username) {
+		self::$user = User::getUser ($username);
+		return self::$user;
 	}
 }
 ?>
