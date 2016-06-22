@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<htmL>
+<head lang="en">
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+	.col {
+		float: left;
+		width:50%;
+	}
+	</style>
+	<script src="angular.js"></script>
+	<script src="app.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.3.1/css/flag-icon.min.css" />
+</head>
+<body ng-app="euro2016">
+	<h1>Euro 2016</h1><br/>
+
+	<div ng-controller="EuroController as euroCtrl">
+
+		<div class="col" id="teams">
+		<h2>Teams</h2>
+			<ul>
+				<li ng-repeat="team in euroCtrl.teams">
+					<span class="flag-icon flag-icon-{{team.iso_code}}"></span>
+					{{team.name}}
+				</li>
+			</ul>
+		</div>
+		<div class="col" id="users">
+		<h2>Users</h2>
+			<ul>
+				<li ng-repeat="user in euroCtrl.users">
+					{{user.username}}
+				</li>
+			</ul>
+
+		</div>
+	</div>
+		<input type="button" click="randomize()">Randomize</input>
+</body>
+</html>

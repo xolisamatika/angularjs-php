@@ -1,0 +1,9 @@
+<div>
+	<ul ng-show="team.players.length > 0" >
+		<li ng-repeat="player in team.players">
+		{{player.name}}
+		</li>
+	</ul>
+	<input type="text" name="player" ng-model="playerCtrl.newPlayer"></input>
+	<a href ng-click="playerCtrl.addPlayerTo(team)" >Add {{playerCtrl.newPlayer}} to {{team.name}} as a player</a>
+</div>
