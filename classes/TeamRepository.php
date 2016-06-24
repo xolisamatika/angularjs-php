@@ -41,26 +41,31 @@ class TeamRepository {
 
 	private static function Randomize($teams, $users){
 
-	$number_of_teams = count($teams);
-	$number_of_users = count($users);
-	$user_index = 0;
+		$number_of_teams = count($teams);
+		$number_of_users = count($users);
+		$user_index = 0;
 
-	if($number_of_teams%$number_of_users!=0){
-		$number_of_teams = $number_of_teams - 1;
-	}
-	shuffle($teams);
+        $number_of_teams = intval($number_of_teams/$number_of_users);
+        $number_of_teams = $number_of_teams*$number_of_users;
+		
+		shuffle($teams);
 
-	while ($number_of_teams > 0) {
-	$number_of_teams = $number_of_teams - 1;
+		while ($number_of_teams > 0) {
+			$number_of_teams = $number_of_teams - 1;
 
-	$users[$user_index]->addTeam($teams[$number_of_teams]);
+			$users[$user_index]->addTeam($teams[$number_of_teams]);
+			unset($teams[$number_of_teams]);
 
-	$user_index = $user_index + 1;
-	if($user_index >= $number_of_users)
-	$user_index = 0;
+			$user_index = $user_index + 1;
+			if($user_index >= $number_of_users)
+				$user_index = 0;
+		}
+		$count = count($teams);
 
-	}
-	return $users;
+		if(count($teams)!= 0)
+			array_push($users, new User('Unassigned','','','','','', $teams));
+
+		return $users;
 }
 
 }
