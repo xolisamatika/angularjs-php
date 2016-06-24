@@ -7,5 +7,5 @@ echo ")]}'\n";
 $teams = TeamRepository::getTeams();
 
 echo json_encode($teams);
-//var_dump($teams);
+
 ?>

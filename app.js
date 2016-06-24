@@ -9,13 +9,15 @@
 			},
 			getUsers : function(){
 				return $http.get(baseUrl+'/getUsers.php');
+			},getRandoms : function(){
+				return $http.get(baseUrl+'/getFunctions.php?function=1');
 			}
 		};
 	});
 
-	app.controller('EuroController', function(euroService){
+	app.controller('EuroController', function($scope,euroService){
 	
-		var that = this;
+		    var that = this;
 			euroService.getTeams().success(function(data){
 				that.teams = data;
 			});
@@ -29,10 +31,18 @@
 				teams.push({name:this.newTeam, iso_code: ''});
 				this.newTeam = "";
 			}
-
+			$scope.go = function (){
+				euroService.getRandoms().success(function(data){
+							that.randoms = data;
+							console.log(data);
+						})
+			}
+			$scope.isAdmin = function (){
+				
+			}			
+						
 			
 	});
-	
 	app.directive('playerView', function(){
 		return{
 			restrict:'E',
@@ -49,8 +59,11 @@
 			controllerAs:'playerCtrl'
 		}
 	});
+		app.directive('randomsView', function(){
+		return{
+			restrict:'E',
+			templateUrl:'randoms-view.html'
+		}
+	});
 })();
 	
-function randomize (){
-	console.log("Hellow")
-}

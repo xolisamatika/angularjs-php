@@ -7,13 +7,15 @@ class User {
 	private $role;
 	private $created;
 	private $modified;
-	public function __construct($username = '', $password = '', $emailAddress = '', $role = 'user', $created = '', $modified = '') {
+	public $teams;
+	public function __construct($username = '', $password = '', $emailAddress = '', $role = 'user', $created = '', $modified = '', $teams = array()) {
 		$this->username = $username;
 		$this->password = $password;
 		$this->emailAddress = $emailAddress;
 		$this->role = $role;
 		$this->created = $created;
 		$this->modified = $modified;
+		$this->teams = $teams;
 	}
 	public function getUsername() {
 		return $this->username;
@@ -98,6 +100,11 @@ class User {
 			return true;
 		}
 		return false;
+	}
+	public function addTeam($team){
+		
+		 array_push($this->teams, $team);
+
 	}
 }
 ?>

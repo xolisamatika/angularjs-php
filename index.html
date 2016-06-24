@@ -14,9 +14,12 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.3.1/css/flag-icon.min.css" />
 </head>
 <body ng-app="euro2016">
-	<h1>Euro 2016</h1><br/>
-
-	<div ng-controller="EuroController as euroCtrl">
+	
+    
+	<div ng-controller="EuroController as euroCtrl" >
+     <div ng-show="isAdmin()">
+     	
+     </div>
 
 		<div class="col" id="teams">
 		<h2>Teams</h2>
@@ -36,7 +39,21 @@
 			</ul>
 
 		</div>
+		<button ng-click="go()">Randomize</button>
+		<div ng-show="euroCtrl.randoms.length">
+			<h2>Randoms</h2>
+			<ul>
+				<li ng-repeat="user in euroCtrl.randoms">
+				<b>{{user.username}}</b>
+				<ol>
+					<li ng-repeat="team in user.teams">
+						<span class="flag-icon flag-icon-{{team.iso_code}}"></span>
+						{{team.name}}
+					</li>
+				</ol>
+				</li>
+			</ul>
+		</div>
 	</div>
-		<input type="button" click="randomize()">Randomize</input>
 </body>
 </html>
